@@ -6,8 +6,9 @@ import os
 
 ## Define the constants 
 FPS = 120
-WIDTH, HEIGHT = 1200, 900
-
+WIDTH, HEIGHT = 1400, 1000
+INIT_FUEL = 10
+ 
 # Initialize Pygame
 pygame.init()
 
@@ -16,27 +17,23 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Mayhem")
 
 ## Load images
-boid = pygame.image.load(os.path.join("Assets", "test.png"))
-SPACE1 = pygame.image.load(os.path.join("Assets", "the11.jpg"))
-predator = pygame.image.load(os.path.join("Assets", "ufo.png"))
-obstacle = pygame.image.load(os.path.join("Assets", "planet2.png"))
-obstacle_2 = pygame.image.load(os.path.join("Assets", "planet1.png"))
-obstacle_3 = pygame.image.load(os.path.join("Assets", "planet3.png"))
-obstacle_4 = pygame.image.load(os.path.join("Assets", "planet4.png"))
-obstacle_5 = pygame.image.load(os.path.join("Assets", "planet5.png"))
-obstacle_6 = pygame.image.load(os.path.join("Assets", "planet6.png"))
+harry = pygame.image.load(os.path.join("Assets", "harry.png"))
+SPACE1 = pygame.image.load(os.path.join("Assets", "test1.jpg"))
+voldemort = pygame.image.load(os.path.join("Assets", "voldemort.png"))
+
+
+
+
+
+
 
 ## Resize images 
-boid_WIDTH, boid_HEIGHT = int(boid.get_width() * 0.08), int(boid.get_height() * 0.08)
-boid1 = pygame.transform.scale(boid, (boid_WIDTH, boid_HEIGHT))
-predator1 = pygame.transform.scale(predator, (100, 100))
+harry_WIDTH, harry_HEIGHT = int(harry.get_width() * 0.25), int(harry.get_height() * 0.25)
+harry1 = pygame.transform.scale(harry, (harry_WIDTH, harry_HEIGHT))
+voldemort1 = pygame.transform.scale(voldemort, (harry_WIDTH, harry_HEIGHT))
 SPACE = pygame.transform.scale(SPACE1, (WIDTH, HEIGHT))
-obstacle1 = pygame.transform.scale(obstacle, (100, 100))
-obstacle2 = pygame.transform.scale(obstacle_2, (100, 100))
-obstacle3 = pygame.transform.scale(obstacle_3, (150, 150))
-obstacle4 = pygame.transform.scale(obstacle_4, (120, 120))
-obstacle5 = pygame.transform.scale(obstacle_5, (150, 150))
-obstacle6 = pygame.transform.scale(obstacle_6, (120, 150))
+
+
 
 
 ## Function to run the main game-loop
@@ -51,12 +48,19 @@ def main():
         clock.tick(FPS)
 
         ## Draw background and constant structures
+        WIN.blit(SPACE, (0,0))
+        WIN.blit(harry1, (100, 500))
+        WIN.blit(voldemort1, (900, 500))
 
+        # Iterate over all game events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
 
-
-    
         # Update game display
-    
+        pygame.display.update()
+
+
     ## Quit pygame and exit 
     pygame.quit()
     exit()
